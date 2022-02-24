@@ -3,12 +3,13 @@ using namespace std;
 #define     MINE    10         // 爆弾数
 #define     WD     9          // 盤面横数
 #define     HT      9          // 盤面縦数
-vector<vector<bool>> open(HT + 2, vector<bool>(WD + 2, 0));
-vector<vector<bool>> mine(HT + 2, vector<bool>(WD + 2, 0));
-vector<vector<bool>> opn(HT + 2, vector<bool>(WD + 2, 0));
-vector<vector<int>> ct(HT + 2, vector<int>(WD + 2, 0));
+vector<vector<bool>> open(HT + 2, vector<bool>(WD + 2, 0));//開いているか
+vector<vector<bool>> mine(HT + 2, vector<bool>(WD + 2, 0));//爆弾位置
+vector<vector<bool>> opn(HT + 2, vector<bool>(WD + 2, 0));//連続オープンチェック
+vector<vector<int>> ct(HT + 2, vector<int>(WD + 2, 0));//周囲の爆弾
 vector<string> zen = { "０","１","２","３","４","５","６","７","８","９" };
-queue<pair<int, int>> li;
+queue<pair<int, int>> li;//連続オープンリスト
+int cnt=0;//未開のマス;
 
 void resetboad() {
 	srand((unsigned int)time(NULL));
@@ -39,6 +40,7 @@ void resetboad() {
 	}
 }
 void plt() {
+	cnt = 0;
 	for (int i = 0; i < HT + 1; i++) {
 		if (i == 0) {
 			cout << " １２３４５６７８９" << endl;
@@ -57,6 +59,7 @@ void plt() {
 			}
 			else {
 				cout << "□";
+				cnt++;
 			}
 		}
 		cout << endl;
@@ -97,12 +100,24 @@ int main(){
 		resetboad();
 		while (1) {
 			plt();
+			if (cnt == MINE) {
+				cout << "CLEAR!!!" << endl;
+				break;
+			}
 			int a, b;
 			cin >> a >> b;
+			if (a < 1 || a>9 || b < 1 || b>9) {
+				cout << "ERROR : out of range" << endl;
+				continue;
+			}
+			if (open[a][b]) {
+				cout << "ERROR : already opened" << endl;
+				continue;
+			}
 			if (mine[a][b]) {
-				cout << "GAME OVER" << endl;
 				open[a][b] = 1;
 				plt();
+				cout << "GAME OVER" << endl;
 				break;
 			}
 			open[a][b] = 1;
