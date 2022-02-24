@@ -1,13 +1,13 @@
 #include <C:/MinGW/bits/stdc++.h>
 using namespace std;
-#define     MINE    10         // ”š’e”
-#define     WD     9          // ”Õ–Ê‰¡”
-#define     HT      9          // ”Õ–Êc”
+#define     MINE    10         // çˆ†å¼¾æ•°
+#define     WD     9          // ç›¤é¢æ¨ªæ•°
+#define     HT      9          // ç›¤é¢ç¸¦æ•°
 vector<vector<bool>> open(HT + 2, vector<bool>(WD + 2, 0));
 vector<vector<bool>> mine(HT + 2, vector<bool>(WD + 2, 0));
 vector<vector<bool>> opn(HT + 2, vector<bool>(WD + 2, 0));
 vector<vector<int>> ct(HT + 2, vector<int>(WD + 2, 0));
-vector<string> zen = { "‚O","‚P","‚Q","‚R","‚S","‚T","‚U","‚V","‚W","‚X" };
+vector<string> zen = { "ï¼","ï¼‘","ï¼’","ï¼“","ï¼”","ï¼•","ï¼–","ï¼—","ï¼˜","ï¼™" };
 queue<pair<int, int>> li;
 
 void resetboad() {
@@ -41,7 +41,7 @@ void resetboad() {
 void plt() {
 	for (int i = 0; i < HT + 1; i++) {
 		if (i == 0) {
-			cout << " ‚P‚Q‚R‚S‚T‚U‚V‚W‚X" << endl;
+			cout << " ï¼‘ï¼’ï¼“ï¼”ï¼•ï¼–ï¼—ï¼˜ï¼™" << endl;
 			continue;
 		}
 		for (int j = 0; j < WD + 1; j++) {
@@ -50,13 +50,13 @@ void plt() {
 				continue;
 			}
 			if (open[i][j] && mine[i][j]) {
-				cout << "~";
+				cout << "Ã—";
 			}
 			else if (open[i][j]) {
 				cout << zen[ct[i][j]];
 			}
 			else {
-				cout << " ";
+				cout << "â–¡";
 			}
 		}
 		cout << endl;
@@ -91,7 +91,7 @@ void op() {
 
 int main(){
 	string s;
-	cout << "ƒXƒ^[ƒg‚·‚éê‡‚Í[yes]‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << endl;
+	cout << "ã‚¹ã‚¿ãƒ¼ãƒˆã™ã‚‹å ´åˆã¯[yes]ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„" << endl;
 	cin >> s;
 	while (s == "yes") {
 		resetboad();
@@ -112,7 +112,7 @@ int main(){
 
 
 
-		cout << "‘±‚¯‚Ü‚·‚©H[yes][no]" << endl;
+		cout << "ç¶šã‘ã¾ã™ã‹ï¼Ÿ[yes][no]" << endl;
 		cin >> s;
 	}
 }
