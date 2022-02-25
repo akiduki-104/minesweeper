@@ -41,22 +41,22 @@ void plt()
     cnt = 0;
     for (int i = 0; i < HT + 1; i++) {
         if (i == 0) {
-            cout << " 123456789" << endl;
+            cout << "　１２３４５６７８９" << endl;
             continue;
         }
         for (int j = 0; j < WD + 1; j++) {
             if (j == 0) {
-                cout << i;
+                cout << ;
                 continue;
             }
             if (open[i][j] && mine[i][j]) {
-                cout << "x";
+                cout << "×";
             }
             else if (open[i][j]) {
                 cout << zen[ct[i][j]];
             }
             else {
-                cout << "o";
+                cout << "□";
                 cnt++;
             }
         }
